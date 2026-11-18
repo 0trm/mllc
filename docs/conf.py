@@ -30,7 +30,26 @@ mermaid_height = "auto"
 
 exclude_patterns = ["_build", "requirements.txt"]
 
+# docs/_templates/layout.html sets the tab title
+templates_path = ["_templates"]
 html_theme = "sphinx_book_theme"
+# Canonical links, and the tags a link preview reads.
+html_baseurl = "https://0trm.dev/mllc/"
+DESCRIPTION = (
+    "Notes on designing, building and running machine learning systems, "
+    "from a business problem to a model serving users."
+)
+myst_html_meta = {
+    "description": DESCRIPTION,
+    "property=og:title": "Machine Learning Life Cycle",
+    "property=og:description": DESCRIPTION,
+    "property=og:type": "website",
+    "property=og:image": "https://0trm.dev/img/flow-og.jpg",
+    "property=og:image:width": "1200",
+    "property=og:image:height": "630",
+    "property=og:image:alt": "Short dashes laid along a flowing field",
+    "twitter:card": "summary_large_image",
+}
 html_title = "MLLC"
 html_show_sphinx = False
 html_static_path = ["_static"]
@@ -38,7 +57,7 @@ html_static_path = ["_static"]
 html_favicon = "_static/favicon.ico"
 html_css_files = ["custom.css"]
 html_js_files = [("diagrams.js", {"defer": "defer"}), ("mobile.js", {"defer": "defer"})]
-html_context = {"default_mode": "light"}
+html_context = {"default_mode": "auto"}
 html_theme_options = {
     "repository_url": "https://github.com/0trm/mllc",
     "repository_branch": "main",
@@ -52,6 +71,7 @@ html_theme_options = {
     "show_toc_level": 2,
     "footer_content_items": ["copyright.html", "extra-footer.html"],
     "extra_footer": (
+        '<a href="https://0trm.dev/">0trm.dev</a> · '
         "<em>Rules of Machine Learning</em> by Martin Zinkevich and <em>Managing ML Projects</em> "
         "by Google for Developers are paraphrased under "
         '<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.'

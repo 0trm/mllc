@@ -1,0 +1,5 @@
+{%- extends "!layout.html" %}
+{#- The tab title joins the page's name and the site's with a middle dot, as 0trm.dev does, instead of the theme's em dash #}
+{%- block htmltitle %}
+    <title>{{ title|striptags|e }}{% if docstitle and not embedded %} · {{ docstitle|e }}{% endif %}</title>
+{%- endblock %}

@@ -459,31 +459,6 @@ nav.bd-links .page-sections a.is-reading {
     color: var(--pst-color-text-muted);
     text-decoration: none;
   }
-
-  /* Diagrams too small to read become a card that opens full screen. */
-  pre.mermaid.is-expandable {
-    padding: 0.75rem 0.75rem 3.25rem;
-    border: 1px solid var(--pst-color-border);
-    border-radius: 0.75rem;
-    cursor: zoom-in;
-  }
-
-  .diagram-expand {
-    position: absolute;
-    right: 0.6rem;
-    bottom: 0.6rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    min-height: 2.25rem;
-    padding: 0 0.85rem;
-    font: 500 0.85rem/1 var(--pst-font-family-base);
-    color: var(--pst-color-primary);
-    background: var(--diagram-tint);
-    border: 0;
-    border-radius: 999px;
-    cursor: pointer;
-  }
 }
 
 /* ---- Phones -------------------------------------------------------------------- */
@@ -643,6 +618,42 @@ nav.bd-links .page-sections a.is-reading {
   .bd-article .pst-scrollable-table-container.has-more {
     mask-image: linear-gradient(to right, #000 calc(100% - 2.5rem), transparent);
   }
+}
+
+/* ---- Diagrams too small to read, at any width (diagrams.js) ---------------------- */
+/* They become a card that opens full screen. */
+pre.mermaid.is-expandable {
+  padding: 0.75rem 0.75rem 3.25rem;
+  border: 1px solid var(--pst-color-border);
+  border-radius: 0.75rem;
+  cursor: zoom-in;
+}
+
+.diagram-expand {
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.25rem;
+  padding: 0 0.85rem;
+  font: 500 0.85rem/1 var(--pst-font-family-base);
+  color: color-mix(in srgb, var(--pst-color-primary) 85%, #000);
+  background: var(--diagram-tint);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* The primary blue on the tint is 4.2:1; a shade darker (light) or lighter (dark) passes. */
+html[data-theme="dark"] .diagram-expand {
+  color: color-mix(in srgb, var(--pst-color-primary) 85%, #fff);
+}
+
+/* Until Mermaid has drawn a diagram, its source stays hidden; with scripts off it shows. */
+html[data-mode] pre.mermaid:not([data-processed]) {
+  color: transparent;
 }
 
 /* ---- Full-screen diagram view (diagrams.js) ------------------------------------ */
