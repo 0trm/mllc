@@ -1,10 +1,9 @@
-// Diagrams: natural size on wide screens; on phones and tablets a diagram shown smaller
+// Diagrams: natural size where the column allows; at any width a diagram shown smaller
 // than its natural size becomes a card that opens full screen, where it can be panned
 // and zoomed.
 
 {
-// Phones and tablets: a diagram shown below EXPAND_BELOW of its size can be opened full screen.
-const NARROW = matchMedia("(max-width: 991.98px)");
+// A diagram shown below EXPAND_BELOW of its size can be opened full screen.
 const EXPAND_BELOW = 0.85;
 const MAX_ZOOM = 3;
 
@@ -32,7 +31,7 @@ const markExpandable = (pre) => {
   if (!svg) return;
   const [natural] = naturalSize(svg);
   const shown = svg.getBoundingClientRect().width;
-  const small = NARROW.matches && natural > 0 && shown > 0 && shown / natural < EXPAND_BELOW;
+  const small = natural > 0 && shown > 0 && shown / natural < EXPAND_BELOW;
   pre.classList.toggle("is-expandable", small);
   let button = pre.querySelector(":scope > .diagram-expand");
   if (!small) button?.remove();
@@ -41,7 +40,7 @@ const markExpandable = (pre) => {
     button.type = "button";
     button.className = "diagram-expand";
     button.innerHTML = `${ICON_EXPAND}<span>Expand</span>`;
-    button.setAttribute("aria-label", "Open the diagram full screen");
+    button.setAttribute("aria-label", "Expand: open the diagram full screen");
     pre.append(button);
   }
 };
